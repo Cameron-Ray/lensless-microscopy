@@ -3,6 +3,7 @@ import os
 
 from flask import (Flask, Response, render_template, request,
                    send_from_directory)
+from imutils.video.pivideostream import PiVideoStream
 
 from camera import VideoCamera
 
@@ -28,10 +29,10 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # Take a photo when pressing camera button
-@app.route('/picture')
-def take_picture():
-    pi_camera.take_picture()
-    return "None"
+# @app.route('/picture')
+# def take_picture():
+#     pi_camera.take_picture()
+#     return "None"
 
 if __name__ == '__main__':
 

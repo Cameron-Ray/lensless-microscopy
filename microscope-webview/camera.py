@@ -2,12 +2,14 @@
 #Date: 27.09.20
 #Desc: This scrtipt script..
 
-import cv2 as cv
-from imutils.video.pivideostream import PiVideoStream
-import imutils
 import time
 from datetime import datetime
+
+import cv2 as cv
+import imutils
 import numpy as np
+from imutils.video.pivideostream import PiVideoStream
+
 
 class VideoCamera(object):
     def __init__(self, flip = False, file_type  = ".jpg", photo_string= "stream_photo"):
