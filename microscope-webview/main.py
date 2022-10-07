@@ -1,11 +1,10 @@
-#Modified by smartbuilds.io
-#Date: 27.09.20
-#Desc: This web application serves a motion JPEG stream
-# main.py
 # import the necessary packages
-from flask import Flask, render_template, Response, request, send_from_directory
-from camera import VideoCamera
 import os
+
+from flask import (Flask, Response, render_template, request,
+                   send_from_directory)
+
+from camera import VideoCamera
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 
@@ -36,4 +35,4 @@ def take_picture():
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='192.168.0.74', debug=False)
