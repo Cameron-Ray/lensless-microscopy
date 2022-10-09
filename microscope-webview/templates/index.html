@@ -5,6 +5,10 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,0"
+		/>
+		<link
+			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
 		/>
 		<link
@@ -15,1116 +19,179 @@
 			rel="shortcut icon"
 			href="{{ url_for('static', filename='favicon.ico') }}"
 		/>
-		<title>Pi Microscope</title>
+		<link rel="stylesheet" href="css/index.css" type="text/css" />
+		<title>RPi Microscope</title>
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1, user-scalable="
+			content="width=device-width, initial-scale=1, user-scalable=0"
 		/>
-		<style>
-			.div {
-				display: flex;
-				flex-direction: column;
-				justify-content: top;
-				align-items: center;
-				padding-top: 25px;
-				padding-right: 50px;
-				padding-bottom: 50px;
-				padding-left: 50px;
-				background-color: rgba(247, 247, 247, 1);
-				height: 100%;
-			}
-			.div-2 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				align-self: stretch;
-				width: 1049px;
-			}
-			.div-3 {
-				display: flex;
-			}
-			@media (max-width: 999px) {
-				.div-3 {
-					flex-direction: row;
-					align-items: stretch;
-				}
-			}
-			.column {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(24.71% - 10px);
-				margin-left: 0px;
-			}
-			@media (max-width: 999px) {
-				.column {
-					width: 100%;
-				}
-			}
-			.div-4 {
-				max-width: 210px;
-				color: rgba(0, 0, 0, 1);
-				line-height: 34px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-2 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(86.94% - 10px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-2 {
-					width: 100%;
-				}
-			}
-			.div-5 {
-				display: flex;
-				flex-direction: column;
-				max-width: 739px;
-			}
-			.div-6 {
-				display: flex;
-			}
-			@media (max-width: 999px) {
-				.div-6 {
-					flex-direction: row;
-					align-items: stretch;
-				}
-			}
-			.column-3 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(37.04% - 13.333333333333334px);
-				margin-left: 0px;
-			}
-			@media (max-width: 999px) {
-				.column-3 {
-					width: 100%;
-				}
-			}
-			.div-7 {
-				display: flex;
-				flex-direction: row;
-				max-width: 263px;
-				justify-content: center;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-			}
-			.div-8 {
-				max-width: 83px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-9 {
-				max-width: 140px;
-				margin-left: 10px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-4 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(32.25% - 13.333333333333334px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-4 {
-					width: 100%;
-				}
-			}
-			.div-10 {
-				display: flex;
-				flex-direction: row;
-				max-width: 229px;
-				justify-content: center;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-			}
-			.div-11 {
-				max-width: 86px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-12 {
-				max-width: 103px;
-				margin-left: 10px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-5 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(31.97% - 13.333333333333334px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-5 {
-					width: 100%;
-				}
-			}
-			.div-13 {
-				display: flex;
-				flex-direction: row;
-				max-width: 227px;
-				justify-content: center;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-			}
-			.div-14 {
-				max-width: 102px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-15 {
-				max-width: 85px;
-				margin-left: 10px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-16 {
-				display: flex;
-				flex-direction: column;
-				max-width: 1027px;
-				margin-top: 50px;
-			}
-			.div-17 {
-				display: flex;
-			}
-			@media (max-width: 999px) {
-				.div-17 {
-					flex-direction: column;
-					align-items: stretch;
-				}
-			}
-			.column-6 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(65.73% - 10px);
-				margin-left: 0px;
-			}
-			@media (max-width: 999px) {
-				.column-6 {
-					width: 100%;
-				}
-			}
-			.div-18 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				justify-content: flex-end;
-				align-self: stretch;
-				width: 600px;
-				height: 600px;
-				align-items: flex-end;
-				border-radius: 10px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-position: center;
-			}
-			.div-19 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				align-self: stretch;
-				width: 590px;
-			}
-			.div-20 {
-				display: flex;
-			}
-			@media (max-width: 999px) {
-				.div-20 {
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-between;
-				}
-			}
-			.column-7 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(31.64% - 10px);
-				margin-left: 0px;
-			}
-			@media (max-width: 999px) {
-				.column-7 {
-					width: 100%;
-				}
-			}
-			.div-21 {
-				display: flex;
-				flex-direction: row;
-				max-width: 187px;
-				justify-content: center;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 5px;
-				padding-right: 10px;
-				padding-bottom: 5px;
-				padding-left: 10px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-				background-color: rgba(247, 247, 247, 1);
-			}
-			.div-22 {
-				max-width: 12px;
-				color: rgba(0, 225, 23, 1);
-				font-size: 25px;
-				line-height: 14px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-23 {
-				max-width: 150px;
-				margin-left: 5px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 14px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-8 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(24.7% - 10px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-8 {
-					width: 100%;
-				}
-			}
-			.div-24 {
-				display: flex;
-				flex-direction: row;
-				max-width: 146px;
-				justify-content: center;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 5px;
-				padding-right: 10px;
-				padding-bottom: 5px;
-				padding-left: 10px;
-				border-color: rgba(0, 0, 0, 1);
-				border-width: 2px;
-				border-style: solid;
-				background-color: rgba(247, 247, 247, 1);
-			}
-			.div-25 {
-				max-width: 34px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-26 {
-				max-width: 82px;
-				margin-left: 10px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 14px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-9 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(39.55% - 10px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-9 {
-					width: 100%;
-				}
-			}
-			.div-27 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				justify-content: space-between;
-				align-self: stretch;
-				width: 367px;
-				align-items: center;
-			}
-			.div-28 {
-				display: flex;
-				flex-direction: column;
-				max-width: 367px;
-				justify-content: center;
-				align-items: flex-end;
-			}
-			.div-29 {
-				display: flex;
-				flex-direction: column;
-				max-width: 367px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-30 {
-				max-width: 160px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 18px;
-				line-height: 25px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-31 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				justify-content: center;
-				align-self: stretch;
-				width: 367px;
-				align-items: flex-end;
-				margin-top: 5px;
-				border-radius: 10px;
-				padding-top: 15px;
-				padding-right: 15px;
-				padding-bottom: 15px;
-				padding-left: 15px;
-				background-color: rgba(0, 0, 0, 1);
-			}
-			.div-32 {
-				display: flex;
-				flex-direction: column;
-				max-width: 337px;
-			}
-			.div-33 {
-				display: flex;
-			}
-			@media (max-width: 999px) {
-				.div-33 {
-					flex-direction: column;
-					align-items: stretch;
-				}
-			}
-			.column-10 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(36.09% - 10px);
-				margin-left: 0px;
-			}
-			@media (max-width: 999px) {
-				.column-10 {
-					width: 100%;
-				}
-			}
-			.div-34 {
-				display: flex;
-				flex-direction: column;
-				max-width: 122px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-35 {
-				display: flex;
-				flex-direction: row;
-				max-width: 102px;
-				justify-content: center;
-				align-self: stretch;
-				width: 122px;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-36 {
-				display: flex;
-				flex-direction: row;
-				max-width: 61px;
-				justify-content: center;
-				align-self: stretch;
-				width: 122px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-37 {
-				display: flex;
-				flex-direction: row;
-				max-width: 72px;
-				justify-content: center;
-				align-self: stretch;
-				width: 122px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-38 {
-				display: flex;
-				flex-direction: row;
-				max-width: 18px;
-				justify-content: center;
-				align-self: stretch;
-				width: 122px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-39 {
-				display: flex;
-				flex-direction: row;
-				max-width: 72px;
-				justify-content: center;
-				align-self: stretch;
-				width: 122px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.column-11 {
-				display: flex;
-				flex-direction: column;
-				line-height: normal;
-				width: calc(63.61% - 10px);
-				margin-left: 20px;
-			}
-			@media (max-width: 999px) {
-				.column-11 {
-					width: 100%;
-				}
-			}
-			.div-40 {
-				display: flex;
-				flex-direction: column;
-				max-width: 215px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-41 {
-				display: flex;
-				flex-direction: row;
-				max-width: 105px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 215px;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-42 {
-				display: flex;
-				flex-direction: row;
-				max-width: 83px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 215px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-43 {
-				display: flex;
-				flex-direction: row;
-				max-width: 185px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 215px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-44 {
-				display: flex;
-				flex-direction: row;
-				max-width: 117px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 215px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-45 {
-				display: flex;
-				flex-direction: row;
-				max-width: 174px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 215px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-46 {
-				display: flex;
-				flex-direction: row;
-				max-width: 232px;
-				justify-content: center;
-				align-items: center;
-				margin-top: 20px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				background-color: rgba(0, 0, 0, 1);
-			}
-			.div-47 {
-				max-width: 52px;
-				color: rgba(255, 255, 255, 1);
-				font-size: 11px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-48 {
-				max-width: 140px;
-				margin-left: 10px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 14px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-49 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 367px;
-				align-items: flex-start;
-				margin-top: 50px;
-			}
-			.div-50 {
-				max-width: 228px;
-				color: rgba(0, 0, 0, 1);
-				font-size: 18px;
-				line-height: 25px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-51 {
-				display: flex;
-				flex-direction: column;
-				max-width: 100%;
-				justify-content: center;
-				align-self: stretch;
-				width: 367px;
-				align-items: flex-start;
-				margin-top: 5px;
-				border-radius: 10px;
-				padding-top: 15px;
-				padding-right: 15px;
-				padding-bottom: 15px;
-				padding-left: 15px;
-				background-color: rgba(0, 0, 0, 1);
-			}
-			.div-52 {
-				display: flex;
-				flex-direction: row;
-				max-width: 237px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-53 {
-				display: flex;
-				flex-direction: column;
-				max-width: 98px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-54 {
-				display: flex;
-				flex-direction: row;
-				max-width: 28px;
-				justify-content: center;
-				align-self: stretch;
-				width: 98px;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-55 {
-				display: flex;
-				flex-direction: row;
-				max-width: 78px;
-				justify-content: center;
-				align-self: stretch;
-				width: 98px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-56 {
-				display: flex;
-				flex-direction: row;
-				max-width: 47px;
-				justify-content: center;
-				align-self: stretch;
-				width: 98px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-color: rgba(247, 247, 247, 1);
-				border-width: 2px;
-				border-style: solid;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-57 {
-				display: flex;
-				flex-direction: column;
-				max-width: 139px;
-				justify-content: flex-start;
-				align-items: flex-start;
-			}
-			.div-58 {
-				display: flex;
-				flex-direction: row;
-				max-width: 80px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 139px;
-				align-items: center;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-59 {
-				display: flex;
-				flex-direction: row;
-				max-width: 109px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 139px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-			.div-60 {
-				display: flex;
-				flex-direction: row;
-				max-width: 44px;
-				justify-content: flex-start;
-				align-self: stretch;
-				width: 139px;
-				align-items: center;
-				margin-top: 15px;
-				border-radius: 5px;
-				padding-top: 10px;
-				padding-right: 15px;
-				padding-bottom: 10px;
-				padding-left: 15px;
-				color: rgba(247, 247, 247, 1);
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0%;
-				text-align: left;
-				font-family: "Poppins", sans-serif;
-			}
-		</style>
 	</head>
 	<body>
-		<div class="div">
-			<div class="div-2">
-				<div class="builder-columns div-3">
-					<div class="builder-column column">
-						<div class="div-4">Raspberry PiMicroscope</div>
+		<div id="mobile-nav">
+			<div class="navbutton">
+				<span class="material-symbols-rounded icon">image_search</span>
+				<span>Browse Historical Images</span>
+			</div>
+			<div class="navbutton">
+				<span class="material-symbols-rounded icon">photo_camera</span>
+				<span>Capture An Image</span>
+			</div>
+			<div class="navbutton">
+				<span class="material-symbols-rounded icon"
+					>ondemand_video</span
+				>
+				<span>View Live Video</span>
+			</div>
+			<div id="close-menu-btn" onClick="menuClose()">
+				<span class="material-symbols-rounded">close</span>
+			</div>
+		</div>
+		<div id="navbar">
+			<a href="/">
+				<div id="title">
+					<span class="smalltext">Raspberry Pi</span>
+					<br />
+					<span class="bigtext">Microscope</span>
+				</div>
+			</a>
+
+			<div id="navlist">
+				<div class="navbutton">
+					<span class="material-symbols-rounded icon"
+						>image_search</span
+					>
+					<span>Browse Historical Images</span>
+				</div>
+				<div class="navbutton">
+					<span class="material-symbols-rounded icon"
+						>photo_camera</span
+					>
+					<span>Capture An Image</span>
+				</div>
+				<div class="navbutton">
+					<span class="material-symbols-rounded icon"
+						>ondemand_video</span
+					>
+					<span>View Live Video</span>
+				</div>
+			</div>
+
+			<div id="mobile-menu-btn" onClick="menuOpen()">
+				<span class="material-symbols-rounded">menu</span>
+			</div>
+		</div>
+
+		<div id="pagecontent">
+			<div id="stream-display">
+				<img
+					id="stream-output"
+					src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+				/>
+				<div id="stream-overlay">
+					<div class="live-label">
+						<span
+							id="live-icon"
+							class="material-symbols-outlined icon"
+						>
+							circle </span
+						><span>Live Microscope Feed</span>
 					</div>
-					<div class="builder-column column-2">
-						<div class="div-5">
-							<div class="builder-columns div-6">
-								<div class="builder-column column-3">
-									<div class="div-7">
-										<div class="div-8">
-											<span
-												class="material-symbols-rounded"
-											>
-												perm_media
-											</span>
-										</div>
-										<div class="div-9">
-											Browse Historical Images
-										</div>
-									</div>
-								</div>
-								<div class="builder-column column-4">
-									<div class="div-10">
-										<div class="div-11">
-											<span
-												class="material-symbols-rounded"
-											>
-												photo_camera
-											</span>
-										</div>
-										<div class="div-12">
-											Capture An Image
-										</div>
-									</div>
-								</div>
-								<div class="builder-column column-5">
-									<div class="div-13">
-										<div class="div-14">
-											<span
-												class="material-symbols-rounded"
-											>
-												live_tv
-											</span>
-										</div>
-										<div class="div-15">
-											View Live Video
-										</div>
-									</div>
-								</div>
+					<div id="view-adjust" class="live-label">
+						<span
+							id="layers-icon"
+							class="material-symbols-rounded icon"
+						>
+							layers </span
+						><span>Adjust View</span>
+					</div>
+				</div>
+			</div>
+
+			<div id="data">
+				<div class="data-section">
+					<span class="section-title">Sample Statistics</span>
+					<div class="data-container">
+						<div class="info-col">
+							<div class="value-block">
+								<span id="sample-id" onclick="copyToClip(this)"
+									>XYZ-20-09-2022</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="count" onclick="copyToClip(this)"
+									>65 cfu</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="growth" onclick="copyToClip(this)"
+									>11.30 c/day</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="mag" onclick="copyToClip(this)"
+									>10x</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="time" onclick="copyToClip(this)"
+									>5d 7h 33m</span
+								>
+							</div>
+						</div>
+						<div class="info-col">
+							<div class="key-block">
+								<span>Sample Name/ID</span>
+							</div>
+							<div class="key-block">
+								<span>Colony Count</span>
+							</div>
+							<div class="key-block">
+								<span>Estimated Colony Growth Rate</span>
+							</div>
+							<div class="key-block">
+								<span>Magnification Level</span>
+							</div>
+							<div class="key-block">
+								<span>Elapsed Colony Growth Time</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="div-16">
-				<div class="builder-columns div-17">
-					<div class="builder-column column-6">
-						<div class="div-18">
-							<img
-								class="camera-bg"
-								style="background-attachment: fixed"
-								id="bg"
-								class="center"
-								src="{{ url_for('video_feed') }}"
-							/>
-							<div class="div-19">
-								<div class="builder-columns div-20">
-									<div class="builder-column column-7">
-										<div class="div-21">
-											<div class="div-22">•</div>
-											<div class="div-23">
-												Live Microscope Feed
-											</div>
-										</div>
-									</div>
-									<div class="builder-column column-8">
-										<div class="div-24">
-											<div class="div-25">
-												<span
-													class="material-symbols-rounded"
-												>
-													layers
-												</span>
-											</div>
-											<div class="div-26">
-												Adjust View
-											</div>
-										</div>
-									</div>
-								</div>
+
+				<div class="navbutton">
+					<span class="material-symbols-rounded icon">add_box</span>
+					<span>Load A New Sample</span>
+				</div>
+
+				<div class="data-section">
+					<span class="section-title">Raspberry Pi Diagnostics</span>
+					<div class="data-container">
+						<div class="info-col">
+							<div class="value-block">
+								<span id="temp" onclick="copyToClip(this)"
+									>33.0°</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="network" onclick="copyToClip(this)"
+									>Test Network</span
+								>
+							</div>
+							<div class="value-block">
+								<span id="uptime" onclick="copyToClip(this)"
+									>1d 3h 4m</span
+								>
 							</div>
 						</div>
-					</div>
-					<div class="builder-column column-9">
-						<div class="div-27">
-							<div class="div-28">
-								<div class="div-29">
-									<div class="div-30">Sample Statistics</div>
-									<div class="div-31">
-										<div class="div-32">
-											<div class="builder-columns div-33">
-												<div
-													class="builder-column column-10"
-												>
-													<div class="div-34">
-														<div class="div-35">
-															XYZ-20-09-2022
-														</div>
-														<div class="div-36">
-															65.00 cfm
-														</div>
-														<div class="div-37">
-															22.30 c/day
-														</div>
-														<div class="div-38">
-															10x
-														</div>
-														<div class="div-39">
-															22.30 c/day
-														</div>
-													</div>
-												</div>
-												<div
-													class="builder-column column-11"
-												>
-													<div class="div-40">
-														<div class="div-41">
-															Sample Name/ID
-														</div>
-														<div class="div-42">
-															Colony Count
-														</div>
-														<div class="div-43">
-															Estimated Colony
-															Growth Rate
-														</div>
-														<div class="div-44">
-															Magnification Level
-														</div>
-														<div class="div-45">
-															Elapsed Colony
-															Growth Time
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="div-46">
-									<div class="div-47">
-										<span class="material-symbols-rounded">
-											add_box
-										</span>
-									</div>
-									<div class="div-48">Load A New Sample</div>
-								</div>
+						<div class="info-col">
+							<div class="key-block">
+								<span>Temperature</span>
 							</div>
-							<div class="div-49">
-								<div class="div-50">
-									Raspberry Pi Diagnostics
-								</div>
-								<div class="div-51">
-									<div class="div-52">
-										<div class="div-53">
-											<div class="div-54">31.0°</div>
-											<div class="div-55">
-												Test Network
-											</div>
-											<div class="div-56">1hr 30m</div>
-										</div>
-										<div class="div-57">
-											<div class="div-58">
-												Temperature
-											</div>
-											<div class="div-59">
-												Network SSID/Port
-											</div>
-											<div class="div-60">Uptime</div>
-										</div>
-									</div>
-								</div>
+							<div class="key-block">
+								<span>Network SSID/Interface</span>
+							</div>
+							<div class="key-block">
+								<span>Uptime</span>
 							</div>
 						</div>
 					</div>
@@ -1132,4 +199,35 @@
 			</div>
 		</div>
 	</body>
+
+	<script>
+		var oldContent = "";
+
+		function copyToClip(span) {
+			if (oldContent == "") {
+				navigator.clipboard.writeText(span.textContent);
+				oldContent = span.textContent;
+				var setSpan = document.getElementById(span.id);
+				setSpan.textContent = "Copied!";
+				setTimeout(() => {
+					setSpan.textContent = oldContent;
+					oldContent = "";
+				}, 2000);
+			}
+		}
+
+		function menuOpen() {
+			document.body.style.setProperty("overflow", "hidden");
+			document
+				.getElementById("mobile-nav")
+				.style.setProperty("display", "flex");
+		}
+
+		function menuClose() {
+			document.body.style.removeProperty("overflow");
+			document
+				.getElementById("mobile-nav")
+				.style.setProperty("display", "none");
+		}
+	</script>
 </html>
