@@ -1,6 +1,7 @@
 #Import necessary libraries
 import datetime
 import os
+import platform
 
 import CloudFlare
 import cv2
@@ -17,7 +18,10 @@ CLOUDFLARE_API_TOKEN = os.getenv('CLOUDFLARE_API_TOKEN')
 currentTime = datetime.now()
 oldTime = currentTime
 
-camera = cv2.VideoCapture(0)
+if platform.system().lower() == 'linux':
+    camera = cv2.VideoCapture('/dev/video0')
+else:
+    camera = cv2.VideoCapture(0)
 
 def refreshDNS():
     currentTime = datetime.now()
