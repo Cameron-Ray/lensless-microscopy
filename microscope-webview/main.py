@@ -15,7 +15,7 @@ app = Flask(__name__)
 #Load Cloudflare API token
 load_dotenv()
 CLOUDFLARE_API_TOKEN = os.getenv('CLOUDFLARE_API_TOKEN')
-currentTime = datetime.now()
+currentTime = datetime.datetime.now()
 oldTime = currentTime
 
 if platform.system().lower() == 'linux':
@@ -24,8 +24,10 @@ else:
     camera = cv2.VideoCapture(0)
 
 def refreshDNS():
-    currentTime = datetime.now()
-    if currentTime > oldTime + datetime. timedelta(hours=1):
+    global oldTime
+    global currentTime
+    currentTime = datetime.datetime.now()
+    if currentTime > oldTime + datetime.timedelta(hours=1):
         cf = CloudFlare.CloudFlare(token=CLOUDFLARE_API_TOKEN)
         zones = cf.zones.get(params={"name": "cameronray.co.za"})
         zone_id = zones[0]["id"]
@@ -34,7 +36,7 @@ def refreshDNS():
         ip = get('https://api.ipify.org').content.decode('utf8')
         a_record["content"] = ip
         cf.zones.dns_records.put(zone_id, a_record["id"], data=a_record)
-        oldTime = datetime.now()
+        oldTime = datetime.datetime.now()
 
 
 def gen_frames():  
@@ -59,4 +61,4 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run(host="192.168.0.164",port="80")
+    app.run(host="192.168.0.164", port="80")
