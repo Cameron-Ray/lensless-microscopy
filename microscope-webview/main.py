@@ -37,28 +37,28 @@ def get_local_IP():
         s.close()
     return IP
 
-def refresh_DNS_thread():
-    # Update DNS record IP address on 30min interval
-    while(1):
-        # Create Cloudflare object with API token
-        cf = CloudFlare.CloudFlare(token=CLOUDFLARE_API_TOKEN)
+# def refresh_DNS_thread():
+#     # Update DNS record IP address on 30min interval
+#     while(1):
+#         # Create Cloudflare object with API token
+#         cf = CloudFlare.CloudFlare(token=CLOUDFLARE_API_TOKEN)
 
-        # Get zones and cameronray.co.za zone ID
-        zones = cf.zones.get(params={"name": "cameronray.co.za"})
-        zone_id = zones[0]["id"]
+#         # Get zones and cameronray.co.za zone ID
+#         zones = cf.zones.get(params={"name": "cameronray.co.za"})
+#         zone_id = zones[0]["id"]
 
-        # Get the existing A record for rpi-microscope subdomain
-        a_record = cf.zones.dns_records.get(zone_id, params={"name": "rpi-microscope.cameronray.co.za", "type": "A"})[0] 
-        a_record["ttl"] = 60
-        ip = get('https://api.ipify.org').content.decode('utf8')
+#         # Get the existing A record for rpi-microscope subdomain
+#         a_record = cf.zones.dns_records.get(zone_id, params={"name": "rpi-microscope.cameronray.co.za", "type": "A"})[0] 
+#         a_record["ttl"] = 60
+#         ip = get('https://api.ipify.org').content.decode('utf8')
 
-        # Only update A record if the IP has changed
-        if (a_record["content"] != ip):
-            a_record["content"] = ip
-            cf.zones.dns_records.put(zone_id, a_record["id"], data=a_record)
-            app.logger.info('DNS record updated successfully!')
+#         # Only update A record if the IP has changed
+#         if (a_record["content"] != ip):
+#             a_record["content"] = ip
+#             cf.zones.dns_records.put(zone_id, a_record["id"], data=a_record)
+#             app.logger.info('DNS record updated successfully!')
 
-        sleep(10)
+#         sleep(10)
 
 
 def gen_frames():  
@@ -103,6 +103,7 @@ def video_feed():
 # The port 80 is forwarded on a local router to expose the
 # web server to the internet
 if __name__ == "__main__":
-    DNS_update_thread = threading.Thread(target=refresh_DNS_thread, daemon=True)
-    DNS_update_thread.start()
+    # Optional Dynamic DNS update
+    # DNS_update_thread = threading.Thread(target=refresh_DNS_thread, daemon=True)
+    # DNS_update_thread.start()
     app.run(debug=True, host=get_local_IP(), port="80")
