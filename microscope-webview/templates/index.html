@@ -1,93 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link
-			rel="manifest"
-			href="{{ url_for('static', filename='manifest.json') }}"
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,0"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="shortcut icon"
-			href="{{ url_for('static', filename='favicon.ico') }}"
-		/>
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='css/index.css') }}"
-			type="text/css"
-		/>
-		<title>RPi Microscope</title>
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, user-scalable=0"
-		/>
-	</head>
+	{% include "head.html" %}
+	<title>RPi Microscope</title>
 	<body>
-		<div id="mobile-nav">
-			<div class="navbutton">
-				<span class="material-symbols-rounded icon">image_search</span>
-				<span>Browse Historical Images</span>
-			</div>
-			<div class="navbutton">
-				<span class="material-symbols-rounded icon">photo_camera</span>
-				<span>Capture An Image</span>
-			</div>
-			<div class="navbutton">
-				<span class="material-symbols-rounded icon"
-					>ondemand_video</span
-				>
-				<span>View Live Video</span>
-			</div>
-			<div id="close-menu-btn" onClick="menuClose()">
-				<span class="material-symbols-rounded">close</span>
-			</div>
-		</div>
-		<div id="navbar">
-			<a href="/">
-				<div id="title">
-					<span class="smalltext">Raspberry Pi</span>
-					<br />
-					<span class="bigtext">Microscope</span>
-				</div>
-			</a>
-
-			<div id="navlist">
-				<div class="navbutton">
-					<span class="material-symbols-rounded icon"
-						>image_search</span
-					>
-					<span>Browse Historical Images</span>
-				</div>
-				<div class="navbutton">
-					<span class="material-symbols-rounded icon"
-						>photo_camera</span
-					>
-					<span>Capture An Image</span>
-				</div>
-				<div class="navbutton">
-					<span class="material-symbols-rounded icon"
-						>ondemand_video</span
-					>
-					<span>View Live Video</span>
-				</div>
-			</div>
-
-			<div id="mobile-menu-btn" onClick="menuOpen()">
-				<span class="material-symbols-rounded">menu</span>
-			</div>
-		</div>
+		{% include "navbar.html" %}
 
 		<div id="pagecontent">
 			<div id="stream-display">
@@ -163,10 +79,14 @@
 					</div>
 				</div>
 
-				<div class="navbutton">
-					<span class="material-symbols-rounded icon">add_box</span>
-					<span>Load A New Sample</span>
-				</div>
+				<a href="{{ url_for('sample_load') }}">
+					<div class="navbutton">
+						<span class="material-symbols-rounded icon"
+							>add_box</span
+						>
+						<span>Load A New Sample</span>
+					</div></a
+				>
 
 				<div class="data-section">
 					<span class="section-title">Raspberry Pi Diagnostics</span>
@@ -206,21 +126,6 @@
 	</body>
 
 	<script>
-		var oldContent = "";
-
-		function copyToClip(span) {
-			if (oldContent == "") {
-				navigator.clipboard.writeText(span.textContent);
-				oldContent = span.textContent;
-				var setSpan = document.getElementById(span.id);
-				setSpan.textContent = "Copied!";
-				setTimeout(() => {
-					setSpan.textContent = oldContent;
-					oldContent = "";
-				}, 2000);
-			}
-		}
-
 		function menuOpen() {
 			document.body.style.setProperty("overflow", "hidden");
 			document
