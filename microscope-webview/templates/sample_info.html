@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+{% include "head.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sample_load.css') }}" type="text/css" />
+
+<title>RPi Microscope</title>
+
+<body>
+	<div id="navbar">
+		<div id="title">
+			<span class="smalltext">Raspberry Pi</span>
+			<br />
+			<span class="bigtext">Microscope</span>
+		</div>
+	</div>
+
+	<form action="load-sample" method="post">
+		<div id="sample-load-pagecontent">
+			<div id="stepOne">
+				<div class="data-section">
+					<span class="section-title">Step 1: Sample Information</span>
+					<div class="data-container">
+						<div class="info-col">
+							<div class="key-block">
+								<span>Sample Name/ID</span>
+							</div>
+							<div class="key-block">
+								<span>Colony Count (Optional)</span>
+							</div>
+							<div class="key-block">
+								<span>Colony Growth Data (Optional)</span>
+							</div>
+						</div>
+
+						<div class="info-col">
+							<div class="value-block">
+								<input name="sample-id" value="{{data.sample_id}}">
+							</div>
+							<div class="value-block">
+								<input name="count" value="{{data.colony_count}}">
+							</div>
+							<div class="value-block">
+								<input name="growth-data" value="{{data.growth}}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="stepTwo">
+				<div class="data-section">
+					<span class="section-title">Step 2: Capture Background Image & Initialise Sample</span>
+					<input type="submit" class="navbutton" value="Capture & Initialise">
+					{% if data['bg_cap'] == True %}
+					<div style="color: rgb(0, 183, 15); padding: 15px 0 0 0;">
+						<span>Background image captured!</span>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+
+			<div id="stepThree">
+				<div class="data-section">
+					<span class="section-title">Step 3: Review Changes</span>
+					<div class="data-container">
+						<div class="info-col">
+							<div class="value-block">
+								<span id="sample-id">{{data['sample_id']}}</span>
+							</div>
+							<div class="value-block">
+								<span id="count">{{data['colony_count']}}</span>
+							</div>
+						</div>
+						<div class="info-col">
+							<div class="key-block">
+								<span>Sample Name/ID</span>
+							</div>
+							<div class="key-block">
+								<span>Colony Count</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="stepFour">
+				<div class="data-section">
+					<span class="section-title">Step 4: Track Live Changes</span>
+					<a href="{{ url_for('index') }}">
+						<div class="navbutton">
+							<span class="material-symbols-rounded icon">ondemand_video</span>
+							<span>Back to Live View</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		</div>
+	</form>
+</body>
+
+</html>

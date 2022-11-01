@@ -1,143 +1,114 @@
 <!DOCTYPE html>
 <html>
-	{% include "head.html" %}
-	<title>RPi Microscope</title>
-	<body>
-		{% include "navbar.html" %}
+{% include "head.html" %}
+<title>RPi Microscope</title>
 
-		<div id="pagecontent">
-			<div id="stream-display">
-				<img id="stream-output" src="{{ url_for('video_feed') }}" />
-				<div id="stream-overlay">
-					<div class="live-label">
-						<span
-							id="live-icon"
-							class="material-symbols-outlined icon"
-						>
-							circle </span
-						><span>Live Microscope Feed</span>
-					</div>
-					<div id="view-adjust" class="live-label">
-						<span
-							id="layers-icon"
-							class="material-symbols-rounded icon"
-						>
-							layers </span
-						><span>Adjust View</span>
-					</div>
+<body>
+	{% include "navbar.html" %}
+
+	<div id="pagecontent">
+		<div id="stream-display">
+			<img id="stream-output" src="{{ url_for('video_feed') }}" />
+			<div id="stream-overlay">
+				<div class="live-label">
+					<span id="live-icon" class="material-symbols-outlined icon">
+						circle </span><span>Live Microscope Feed</span>
 				</div>
 			</div>
+		</div>
 
-			<div id="data">
-				<div class="data-section">
-					<span class="section-title">Sample Statistics</span>
-					<div class="data-container">
-						<div class="info-col">
-							<div class="value-block">
-								<span id="sample-id" onclick="copyToClip(this)"
-									>XYZ-20-09-2022</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="count" onclick="copyToClip(this)"
-									>65 cfu</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="growth" onclick="copyToClip(this)"
-									>11.30 c/day</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="mag" onclick="copyToClip(this)"
-									>10x</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="time" onclick="copyToClip(this)"
-									>5d 7h 33m</span
-								>
-							</div>
+		<div id="data">
+			<div class="data-section">
+				<span class="section-title">Sample Statistics</span>
+				<div class="data-container">
+					<div class="info-col">
+						<div class="value-block">
+							<span id="sample-id">{{bacterial_sample.get_Sample_ID()}}</span>
 						</div>
-						<div class="info-col">
-							<div class="key-block">
-								<span>Sample Name/ID</span>
-							</div>
-							<div class="key-block">
-								<span>Colony Count</span>
-							</div>
-							<div class="key-block">
-								<span>Estimated Colony Growth Rate</span>
-							</div>
-							<div class="key-block">
-								<span>Magnification Level</span>
-							</div>
-							<div class="key-block">
-								<span>Elapsed Colony Growth Time</span>
-							</div>
+						<div class="value-block">
+							<span id="count">{{bacterial_sample.get_Colony_Count()}}</span>
+						</div>
+						<div class="value-block">
+							<span id="growth">{{bacterial_sample.calculate_Inst_Growth_Rate()}}</span>
+						</div>
+						<div class="value-block">
+							<span id="time">{{bacterial_sample.get_Elapsed_Time()}}</span>
+						</div>
+					</div>
+					<div class="info-col">
+						<div class="key-block">
+							<span>Sample Name/ID</span>
+						</div>
+						<div class="key-block">
+							<span>Colony Count</span>
+						</div>
+						<div class="key-block">
+							<span>Estimated Colony Growth Rate</span>
+						</div>
+						<div class="key-block">
+							<span>Elapsed Colony Growth Time</span>
 						</div>
 					</div>
 				</div>
+				{% if bacterial_sample.id == None %}
+				<div style="color: rgb(206, 0, 0); padding: 15px 0 0 0;">
+					<span>Please load a sample using the button below</span>
+				</div>
+				{% endif %}
+			</div>
 
-				<a href="{{ url_for('sample_load') }}">
-					<div class="navbutton">
-						<span class="material-symbols-rounded icon"
-							>add_box</span
-						>
-						<span>Load A New Sample</span>
-					</div></a
-				>
+			<a href="{{ url_for('load_sample') }}">
+				<div class="navbutton">
+					<span class="material-symbols-rounded icon">add_box</span>
+					<span>Load A New Sample</span>
+				</div>
+			</a>
 
-				<div class="data-section">
-					<span class="section-title">Raspberry Pi Diagnostics</span>
-					<div class="data-container">
-						<div class="info-col">
-							<div class="value-block">
-								<span id="temp" onclick="copyToClip(this)"
-									>33.0°</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="network" onclick="copyToClip(this)"
-									>Test Network</span
-								>
-							</div>
-							<div class="value-block">
-								<span id="uptime" onclick="copyToClip(this)"
-									>1d 3h 4m</span
-								>
-							</div>
+			<div class="data-section">
+				<span class="section-title">Raspberry Pi Diagnostics</span>
+				<div class="data-container">
+					<div class="info-col">
+						<div class="value-block">
+							<span id="temp">{{rpi_diagnostics["temp"]}}°</span>
 						</div>
-						<div class="info-col">
-							<div class="key-block">
-								<span>Temperature</span>
-							</div>
-							<div class="key-block">
-								<span>Network SSID/Interface</span>
-							</div>
-							<div class="key-block">
-								<span>Uptime</span>
-							</div>
+						<div class="value-block">
+							<span id="network">{{rpi_diagnostics["ssid"]}}</span>
+						</div>
+						<div class="value-block">
+							<span id="uptime">{{rpi_diagnostics["uptime"]}}</span>
+						</div>
+					</div>
+					<div class="info-col">
+						<div class="key-block">
+							<span>Temperature</span>
+						</div>
+						<div class="key-block">
+							<span>Network SSID/Interface</span>
+						</div>
+						<div class="key-block">
+							<span>Uptime</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
 
-	<script>
-		function menuOpen() {
-			document.body.style.setProperty("overflow", "hidden");
-			document
-				.getElementById("mobile-nav")
-				.style.setProperty("display", "flex");
-		}
+<script>
+	function menuOpen() {
+		document.body.style.setProperty("overflow", "hidden");
+		document
+			.getElementById("mobile-nav")
+			.style.setProperty("display", "flex");
+	}
 
-		function menuClose() {
-			document.body.style.removeProperty("overflow");
-			document
-				.getElementById("mobile-nav")
-				.style.setProperty("display", "none");
-		}
-	</script>
+	function menuClose() {
+		document.body.style.removeProperty("overflow");
+		document
+			.getElementById("mobile-nav")
+			.style.setProperty("display", "none");
+	}
+</script>
+
 </html>

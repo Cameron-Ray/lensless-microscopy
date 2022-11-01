@@ -1,9 +1,17 @@
+import RPi.GPIO as GPIO
 from time import sleep
 
-from picamera import PiCamera
+LED_Pin = 26
 
-camera = yYPiCamera()
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_Pin, GPIO.OUT)
+print("setup done")
 
-camera.start_preview()
-sleep(5)
-camera.stop_preview()
+while True:
+    GPIO.output(LED_Pin, 1)
+    sleep(1)
+    GPIO.output(LED_Pin, 0)
+    sleep(1)
+    
+    print("toggle")
+    

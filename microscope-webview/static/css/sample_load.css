@@ -1,0 +1,16 @@
+#sample-load-pagecontent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin: 30px;
+	padding-top: 10px;
+}
+
+#sample-load-pagecontent > *:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+input {
+	width: fit-content;
+}

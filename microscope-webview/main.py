@@ -3,21 +3,26 @@ import datetime
 import os
 import platform
 import socket
+import subprocess
 import threading
 from time import sleep
+from gpiozero import CPUTemperature
 
 import cv2
 from flask import (Flask, Response, flash, redirect, render_template, request,
                    url_for)
+from sample import Sample
 from requests import get
 
 # Initialize the Flask app
 app = Flask(__name__)
 
-if platform.system().lower() == 'linux':
-    camera = cv2.VideoCapture('/dev/video0')
-else:
-    camera = cv2.VideoCapture(0)
+bacterial_sample = Sample(None, None, None, colony_count=None)
+
+camera = cv2.VideoCapture('/dev/video0')
+
+bg_path = '/home/pi/microscope/backgrounds'
+im_path = '/home/pi/microscope/images'
 
 def get_local_IP():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -33,7 +38,6 @@ def get_local_IP():
 
 def gen_frames():  
     while True:
-
         # Read a camera frame 
         success, frame = camera.read()
         if not success:
@@ -49,7 +53,18 @@ def gen_frames():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ssid = os.popen('iwgetid').read().split('"')[1]
+
+    uptime = os.popen('uptime -p').read()[3:-1]
+    uptime = uptime.lower()
+    uptime = uptime.replace(" minutes", "m")
+    uptime = uptime.replace(" hours", "h")
+    uptime = uptime.replace(" days", "d")
+    uptime = uptime.replace(",", "")
+
+    rpi_diagnostics = {"temp": CPUTemperature().temperature, "ssid": ssid, "uptime": uptime}
+
+    return render_template('index.html', bacterial_sample = bacterial_sample, rpi_diagnostics = rpi_diagnostics)
 
 @app.route('/historical-images')
 def historical_images():
@@ -59,12 +74,43 @@ def historical_images():
 def image_capture():
     return render_template('image_capture.html', methods=('GET', 'POST'))
 
-@app.route('/load-sample')
-def sample_load():
-    return render_template('sample_load.html')
+@app.route('/load-sample', methods = ['POST', 'GET'])
+def load_sample():
+    global camera
+    global bg_path
+    global im_path
+    global bacterial_sample
 
+    if request.method == 'GET':
+        data = {"bg_cap": False, "sample_id": "", "colony_count": "", "growth": ""}
+        return render_template('sample_info.html', data = data)
 
-@app.route('/video_feed')
+    elif request.method == 'POST':
+        data = {"bg_cap": False, "sample_id": request.form["sample-id"], "colony_count": request.form["count"], "growth": request.form["growth-data"]}
+        
+        if request.form["sample-id"] == "":
+            return render_template('sample_info.html', data = data)            
+        else:
+            check, frame = camera.read()
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            filename = request.form["sample-id"] + ".jpg"
+            bg_img_path = os.path.join(bg_path, filename)
+            cv2.imwrite(bg_img_path, frame)
+
+            data["bg_cap"] = True
+            bacterial_sample = None
+
+            #TODO: Add functionality to load predefined data
+            bacterial_sample = Sample(data["sample_id"], {}, datetime.datetime.now())
+
+            return render_template('sample_info.html', data = data)
+
+@app.route('/background-capture')
+def background_capture():
+    print("Background captured!")
+    return ("nothing")
+
+@app.route('/video-feed')
 def video_feed():
     # Return the video buffer
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -73,4 +119,4 @@ def video_feed():
 # The port 80 is forwarded on a local router to expose the
 # web server to the internet
 if __name__ == "__main__":
-    app.run(debug=True, host=get_local_IP(), port="80")
+    app.run(debug=False, host=get_local_IP(), port="80")
