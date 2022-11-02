@@ -7,6 +7,7 @@ import subprocess
 import threading
 from time import sleep
 from gpiozero import CPUTemperature
+import RPi.GPIO as GPIO
 
 import cv2
 from flask import (Flask, Response, flash, redirect, render_template, request,
@@ -23,6 +24,11 @@ camera = cv2.VideoCapture('/dev/video0')
 
 bg_path = '/home/pi/microscope/backgrounds'
 im_path = '/home/pi/microscope/images'
+
+LED_Pin = 26
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_Pin, GPIO.OUT)
+GPIO.output(LED_Pin, 1)
 
 def get_local_IP():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -91,8 +97,19 @@ def load_sample():
         if request.form["sample-id"] == "":
             return render_template('sample_info.html', data = data)            
         else:
+            # Capture image
             check, frame = camera.read()
+
+            # Convert to Grayscale
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+            # Crop Image to a square
+            height = len(frame[:,0])
+            width = len(frame[0,:])
+            crop_start_x = (width - height)//2
+            frame = frame[:,crop_start_x:crop_start_x + height]
+
+            # Save Image
             filename = request.form["sample-id"] + ".jpg"
             bg_img_path = os.path.join(bg_path, filename)
             cv2.imwrite(bg_img_path, frame)

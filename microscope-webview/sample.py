@@ -1,7 +1,16 @@
 import datetime
-
+import os
+import holopy as hp
+import numpy as np
+from holopy.core.io import get_example_data_path
+from holopy.core.io.vis import save_plot
+from holopy.propagation import ps_propagate
+from scipy.ndimage import center_of_mass
 
 class Sample:
+    bg_path = '/home/pi/microscope/backgrounds'
+    im_path = '/home/pi/microscope/images'
+
     def __init__(self, id, growth_rate_data, current_time, colony_count=0):
         self.id = id
         self.colony_count = colony_count
@@ -42,3 +51,9 @@ class Sample:
                 return ((self.growth_rate_data[today] - self.growth_rate_data[yesterday])/self.growth_rate_data[yesterday])*100
             elif len(self.growth_rate_data) <= 1:
                 return "Not Enough Data"
+
+    def reconstruct_Sample():
+        global im_path
+        im_list = os.listdir(im_path)
+
+        print(im_list)
