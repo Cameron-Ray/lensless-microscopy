@@ -21,6 +21,11 @@ app = Flask(__name__)
 bacterial_sample = Sample(None, None, None, colony_count=None)
 
 camera = cv2.VideoCapture('/dev/video0')
+camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+width = 480
+height = 480
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 bg_path = '/home/pi/microscope/backgrounds'
 im_path = '/home/pi/microscope/images'
